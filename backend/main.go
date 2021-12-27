@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/SOMAS2021/React-Go/backend/pkg/websocket"
+	"github.com/SOMAS2021/React-Go/pkg/websocket"
 )
 
 func serveWs(pool *websocket.Pool, w http.ResponseWriter, r *http.Request) {
