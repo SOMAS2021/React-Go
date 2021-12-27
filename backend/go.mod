@@ -1,4 +1,4 @@
-module github.com/SOMAS2021/React-Go
+module github.com/SOMAS2021/React-Go/backend
 
 go 1.17
 
