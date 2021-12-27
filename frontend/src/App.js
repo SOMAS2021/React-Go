@@ -4,7 +4,7 @@ import { connect, sendMsg } from "./api";
 import Header from './components/Header/Header'
 import ChatHistory from "./components/ChatHistory";
 import ChatInput from "./components/ChatInput";
-
+import RunInput from "./components/RunInput";
 
 class App extends Component {
   constructor(props) {
@@ -30,8 +30,9 @@ class App extends Component {
       sendMsg(event.target.value);
       event.target.value = "";
     }
-    
   }
+
+
 
   render() {
     return (
@@ -39,6 +40,7 @@ class App extends Component {
         <Header/>
         <ChatHistory chatHistory={this.state.chatHistory} />
         <ChatInput send={this.send} />
+        <RunInput send={this.send} />
       </div>
     );
   }
