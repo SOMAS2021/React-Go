@@ -13,6 +13,10 @@ var embeddedFiles embed.FS
 func main() {
 	fmt.Println("Starting Server")
 	http.Handle("/", http.FileServer(getFileSystem()))
+	// http.Handle("/sim", http.FileServer(fmt.Printf("test")))
+	http.HandleFunc("/ws", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Printf("test")
+	})
 	http.ListenAndServe(":9000", nil)
 }
 

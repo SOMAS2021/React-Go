@@ -5,6 +5,7 @@ import Header from './components/Header/Header'
 import ChatHistory from "./components/ChatHistory";
 import ChatInput from "./components/ChatInput";
 import RunInput from "./components/RunInput";
+import Generate from "./components/Generate";
 
 class App extends Component {
   constructor(props) {
@@ -15,35 +16,37 @@ class App extends Component {
   }
 
   componentDidMount(){
-    connect((msg) => {
-      console.log("New Message")
-      this.setState(prevState => ({
-        chatHistory: [...this.state.chatHistory, msg]
-      }))
-      console.log(this.state);
-    })
+    
   }
 
   send(event) {
     if (event.keyCode == 13){
       console.log("enter entered");
-      sendMsg(event.target.value);
       event.target.value = "";
     }
   }
 
-
+  request() {
+    console.log("made it to the request")
+    var host = window.location.protocol + "//" + window.location.host;
+    console.log(host)
+    fetch(`${host}/ws`)
+    .then(response => response.json())
+    .then(data => console.log(data));
+    }
 
   render() {
     return (
       <div className="App">
         <Header/>
-        <ChatHistory chatHistory={this.state.chatHistory} />
-        <ChatInput send={this.send} />
-        <RunInput send={this.send} />
+        <RunInput formInput={this.formState} />
+        <Generate generate={this.generate}/>
+        <div onClick={() => this.request()}>Click me</div>
       </div>
     );
   }
 }
+
+
 
 export default App;
