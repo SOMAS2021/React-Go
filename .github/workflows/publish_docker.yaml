@@ -26,6 +26,7 @@ jobs:
           workdir: SOMASApp
       - name: Run tests
         run: |
+          cd SOMASApp
           if [ -f docker-compose.test.yml ]; then
             docker-compose --file docker-compose.test.yml build
             docker-compose --file docker-compose.test.yml run sut
@@ -44,8 +45,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-        with:
-          workdir: SOMASApp
 
       - name: Build image
         run: docker build . --file Dockerfile --tag $IMAGE_NAME
@@ -55,6 +54,8 @@ jobs:
 
       - name: Push image
         run: |
+          cd SOMASApp
+
           IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME
 
           # Change all uppercase to lowercase
