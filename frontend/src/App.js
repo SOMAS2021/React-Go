@@ -16,23 +16,35 @@ class App extends Component {
   }
 
   componentDidMount(){
-    
+    // connect((msg) => {
+    //   console.log("New Message")
+    //   this.setState(prevState => ({
+    //     chatHistory: [...this.state.chatHistory, msg]
+    //   }))
+    //   console.log(this.state);
+    // }) 
   }
 
   send(event) {
     if (event.keyCode == 13){
       console.log("enter entered");
+      // sendMsg(this.chatHistory);
       event.target.value = "";
     }
   }
 
   request() {
     console.log("made it to the request")
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title: 'React POST Request Example' })
+    };
     var host = window.location.protocol + "//" + window.location.host;
     console.log(host)
-    fetch(`${host}/ws`)
-    .then(response => response.json())
-    .then(data => console.log(data));
+    fetch(`${host}/ws`, requestOptions);
+    // .then(response => response.json())
+    // .then(data => console.log(data));
     }
 
   render() {
