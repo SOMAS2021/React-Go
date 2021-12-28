@@ -22,7 +22,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
+        with:
+          workdir: SOMASApp
       - name: Run tests
         run: |
           if [ -f docker-compose.test.yml ]; then
@@ -43,6 +44,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          workdir: SOMASApp
 
       - name: Build image
         run: docker build . --file Dockerfile --tag $IMAGE_NAME
