@@ -49,7 +49,7 @@ jobs:
         run: cd SOMASApp && docker build . --file Dockerfile --tag $IMAGE_NAME
 
       - name: Log into registry
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login $REGISTRY -u ${{ github.actor }} --password-stdin
+        run: echo "${{ secrets.GIT_DOCKER_PAT }}" | docker login $REGISTRY -u ${{ github.actor }} --password-stdin
 
       - name: Push image
         run: |
